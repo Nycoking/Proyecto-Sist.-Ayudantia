@@ -1,0 +1,33 @@
+create database aerolinea;
+
+create table clientes (
+	rut int not null,
+    nombre varchar(50),
+    apellido varchar(50),
+    correo varchar(50),
+    telefono int,
+    PRIMARY KEY (rut)
+);
+
+create table vuelos (
+	id_vuelos int not null,
+    fecha_hora_partida datetime,
+    fecha_hora_llegada datetime,
+    ciudad_origen varchar (50),
+    ciudad_destino varchar(50),
+    aeropuerto_origen varchar(50),
+    aeropuerto_llegada varchar(50),
+	pais_origen varchar(50),
+	pais_destino varchar(50),
+    PRIMARY KEY (id_vuelos)
+); 
+create table reservas (
+	id_reserva int not null,
+    id_estado_reservaAsiento int,
+	id_estado_reserva int,
+	rut_cliente int,
+	id_vuelo int,
+    PRIMARY KEY (id_reserva),
+    foreign key (rut_cliente) references clientes(rut),
+    foreign key (id_vuelo) references vuelos(id_vuelos)
+);
